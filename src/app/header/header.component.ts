@@ -18,12 +18,10 @@ export class HeaderComponent implements OnInit {
       this.switchlang = res;
       console.log(res);
     });
-    console.log('mrinal');
     translate.addLangs(['de', 'en']);
     translate.setDefaultLang('de');
-    translate.use('en');
+    translate.use(this.switchlang);
     this.browserLang = translate.getDefaultLang();
-    console.log('browser lang is ' + this.browserLang);
     this.languagechanged();
     this.service.selectedlang.next(this.browserLang);
   }
@@ -38,6 +36,7 @@ export class HeaderComponent implements OnInit {
 
   selectedlang(len) {
     this.service.selectedlang.next(len);
+    this.translate.use(this.switchlang);
     // console.log(len);
   }
 }
